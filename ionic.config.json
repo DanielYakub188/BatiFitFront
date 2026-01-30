@@ -1,0 +1,7 @@
+{
+  "name": "BatiFitFront",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
