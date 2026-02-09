@@ -1,0 +1,139 @@
+.titulo{
+  font-family:var(--text-font-family);
+  font-size:25px;
+}
+.boton-editar{
+  width:105px;
+  height:20px;
+  font-size:14px;
+}
+.subtitulo {
+  font-size:17px;
+  font-family:sans-serif;
+  margin-bottom: 15px;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Estilos para datos físicos */
+.datos-fisicos {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 19px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.dato-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #1a2f4a 0%, #0f1e35 100%);
+  padding: 15px 20px;
+  border-radius: 12px;
+  border: 1px solid #4a7ba7;
+  box-shadow: 0 2px 8px rgba(74, 123, 167, 0.2);
+  min-width: 100px;
+}
+
+.dato-titulo {
+  font-family: var(--text-font-family);
+  font-size: 11px;
+  color: #b0b0b0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.dato-valor {
+  font-family: var(--text-font-family);
+  font-size: 18px;
+  font-weight: bold;
+  color: #4a7ba7;
+}
+
+/* Estilos para estadísticas */
+.estadisticas {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  padding: 20px;
+  background: linear-gradient(135deg, #1a1f3a 0%, #0f131f 100%);
+  border-radius: 12px;
+  border: 1px solid #4a7ba7;
+  box-shadow: 0 2px 12px rgba(74, 123, 167, 0.15);
+}
+
+.estadistica-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(74, 123, 167, 0.1);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.estadistica-titulo {
+  font-family: var(--text-font-family);
+  font-size: 13px;
+  color: #b0b0b0;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.estadistica-valor {
+  font-family: var(--text-font-family);
+  font-size: 16px;
+  font-weight: bold;
+  color: #4a7ba7;
+}
+
+.separador {
+  width: 1px;
+  height: 30px;
+  background-color: var(--text-color-secondary);
+  opacity: 0.3;
+}
+.upperDivider
+{
+  width:1px;
+  height:30px;
+
+  background-color:var(--text-color-secondary);
+  opacity:0.3;
+}
+.columna-info {
+}
+
+.columna-titulo {
+  font-size: 15px;
+  color: var(--text-color-secondary);
+}
+
+.columna-valor {
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--text-color-primary);
+}
+
+.columnas-datos {
+  margin-top: 25px;
+  margin-bottom: 20px;
+  padding: 0;
+}
+
+.columnas-datos ion-col {
+  padding: 8px;
+}
+
+#botones
+{
+  display:flex;
+  justify-content:space-between;
+  ion-button{width:45%;}
+}

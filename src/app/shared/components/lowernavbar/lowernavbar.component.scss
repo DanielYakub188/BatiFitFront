@@ -1,0 +1,54 @@
+.navbar-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+.navbar-toolbar {
+  --padding-bottom: 10px;
+  --padding-top: 10px;
+  --background: #0a0e27;
+  --color: #ffffff;
+  border-top: 1px solid #1a1f3a;
+}
+
+.nav-items {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  width: 100%;
+  position: relative;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+
+  span {
+    font-size: 12px;
+    color: #000000;
+  }
+
+  ion-button {
+    --padding-start: 0;
+    --padding-end: 0;
+    margin: 0;
+    --color: #4a7ba7;
+  }
+}
+
+.center-btn {
+  transform: translateY(-20px);
+
+  ion-button {
+    --box-shadow: 0 4px 12px rgba(74, 123, 167, 0.3);
+    --background: #4a7ba7;
+    --color: #ffffff;
+    width: 56px;
+    height: 56px;
+  }
+}

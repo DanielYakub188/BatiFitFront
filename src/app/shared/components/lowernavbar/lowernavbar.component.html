@@ -1,0 +1,44 @@
+<div class="navbar-container">
+  <ion-toolbar color="primary" class="navbar-toolbar">
+    <div class="nav-items">
+      <!-- Opción 1 -->
+      <div class="nav-item" [routerLink]="['/home']">
+        <ion-button fill="clear" color="light">
+          <ion-icon slot="icon-only" name="home"></ion-icon>
+        </ion-button>
+        <span>Inicio</span>
+      </div>
+
+      <!-- Opción 2 -->
+      <div class="nav-item">
+        <ion-button fill="clear" color="light">
+          <ion-icon slot="icon-only" name="search"></ion-icon>
+        </ion-button>
+        <span>Buscar</span>
+      </div>
+
+      <!-- Botón circular + en el medio -->
+      <div class="nav-item center-btn">
+        <ion-button shape="round" [routerLink]="['/regist-product']" color="secondary" class="boton" (click)="openModal()">
+          <ion-icon slot="icon-only" class="boton" name="add"></ion-icon>
+        </ion-button>
+      </div>
+
+      <!-- Opción 3 -->
+      <div class="nav-item">
+        <ion-button fill="clear" color="light">
+          <ion-icon slot="icon-only" name="heart"></ion-icon>
+        </ion-button>
+        <span>Favoritos</span>
+      </div>
+
+      <!-- Opción 4 -->
+      <div class="nav-item" [routerLink]="['/profile']">
+        <ion-button fill="clear" color="light">
+          <ion-icon slot="icon-only" name="person"></ion-icon>
+        </ion-button>
+        <span>Perfil</span>
+      </div>
+    </div>
+  </ion-toolbar>
+</div>
