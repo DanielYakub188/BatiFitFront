@@ -1,0 +1,149 @@
+ion-content {
+  --padding-top: 20px;
+  --padding-bottom: 20px;
+  --background: #0a0e27;
+}
+
+.form-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  background: linear-gradient(135deg, #1a2f4a 0%, #0f1e35 100%);
+  border-radius: 12px;
+  border: 1px solid #4a7ba7;
+  box-shadow: 0 2px 12px rgba(74, 123, 167, 0.15);
+}
+
+.section-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #4a7ba7;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+.form-grid {
+  --ion-grid-padding: 0;
+  --ion-grid-padding-lg: 0;
+}
+
+ion-row {
+  --ion-grid-column-padding: 3px;
+  margin-bottom: 0;
+}
+
+ion-col {
+  padding-right: 8px;
+
+  &:last-child {
+    padding-right: 0;
+  }
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.input-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #b0b0b0;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.custom-input,
+.custom-select {
+  --background: rgba(74, 123, 167, 0.1);
+  --border-radius: 8px;
+  --border: 1px solid #4a7ba7;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  --padding-top: 10px;
+  --padding-bottom: 10px;
+  --color: #ffffff;
+  --placeholder-color: rgba(176, 176, 176, 0.5);
+}
+
+.custom-select {
+  --padding-end: 50px !important;
+  --icon-position: right;
+}
+
+.custom-input::placeholder,
+ion-input {
+  color: #ffffff;
+}
+
+ion-text {
+  p {
+    margin: 0;
+  }
+}
+
+.error-text {
+  font-size: 11px;
+  color: #ff4444;
+  margin: 2px 0 0 0;
+}
+
+.button-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+ion-button {
+  --border-radius: 8px;
+  height: 44px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex: 1;
+
+  &:disabled {
+    opacity: 0.5;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-section {
+    padding: 15px;
+  }
+
+  .section-title {
+    font-size: 12px;
+  }
+
+  ion-col {
+    padding-right: 4px;
+  }
+
+  .input-label {
+    font-size: 11px;
+  }
+
+  ion-button {
+    height: 40px;
+    font-size: 12px;
+  }
+}
+

@@ -1,0 +1,122 @@
+<ion-content class="ion-padding">
+  <h2 class="form-title">Registrar Datos Personales</h2>
+  <form [formGroup]="personalForm" (ngSubmit)="onSubmit()">
+    <!-- SECCIÓN 1: INFORMACIÓN PERSONAL -->
+    <div class="form-section">
+      <h3 class="section-title">Información Personal</h3>
+      <ion-grid class="form-grid">
+        <ion-row>
+          <ion-col size="12">
+            <div class="input-wrapper">
+              <label class="input-label">Nombre</label>
+              <ion-input type="text" formControlName="name" class="custom-input"></ion-input>
+              <ion-text color="danger" *ngIf="personalForm.get('name')?.invalid && personalForm.get('name')?.touched">
+                <p class="error-text">{{ getErrorMessage('name') }}</p>
+              </ion-text>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="6">
+            <div class="input-wrapper">
+              <label class="input-label">Edad</label>
+              <ion-input type="number" formControlName="age" class="custom-input"></ion-input>
+              <ion-text color="danger" *ngIf="personalForm.get('age')?.invalid && personalForm.get('age')?.touched">
+                <p class="error-text">{{ getErrorMessage('age') }}</p>
+              </ion-text>
+            </div>
+          </ion-col>
+
+          <ion-col size="6">
+            <div class="input-wrapper">
+              <label class="input-label">Género</label>
+              <ion-select formControlName="gender" class="custom-select">
+                <ion-select-option *ngFor="let option of genderOptions" [value]="option.value">
+                  {{ option.label }}
+                </ion-select-option>
+              </ion-select>
+              <ion-text color="danger" *ngIf="personalForm.get('gender')?.invalid && personalForm.get('gender')?.touched">
+                <p class="error-text">{{ getErrorMessage('gender') }}</p>
+              </ion-text>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <!-- SECCIÓN 2: OBJETIVO Y MEDIDAS -->
+    <div class="form-section">
+      <h3 class="section-title">Objetivo y Medidas</h3>
+      <ion-grid class="form-grid">
+        <ion-row>
+          <ion-col size="12">
+            <div class="input-wrapper">
+              <label class="input-label">Objetivo</label>
+              <ion-select formControlName="goal" class="custom-select">
+                <ion-select-option *ngFor="let option of goalOptions" [value]="option.value">
+                  {{ option.label }}
+                </ion-select-option>
+              </ion-select>
+              <ion-text color="danger" *ngIf="personalForm.get('goal')?.invalid && personalForm.get('goal')?.touched">
+                <p class="error-text">{{ getErrorMessage('goal') }}</p>
+              </ion-text>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="4">
+            <div class="input-wrapper">
+              <label class="input-label">Altura (cm)</label>
+              <ion-input type="number" formControlName="heightCm" class="custom-input"></ion-input>
+              <ion-text color="danger" *ngIf="personalForm.get('heightCm')?.invalid && personalForm.get('heightCm')?.touched">
+                <p class="error-text">{{ getErrorMessage('heightCm') }}</p>
+              </ion-text>
+            </div>
+          </ion-col>
+
+          <ion-col size="4">
+            <div class="input-wrapper">
+              <label class="input-label">Peso (kg)</label>
+              <ion-input type="number" formControlName="weightKg" class="custom-input"></ion-input>
+              <ion-text color="danger" *ngIf="personalForm.get('weightKg')?.invalid && personalForm.get('weightKg')?.touched">
+                <p class="error-text">{{ getErrorMessage('weightKg') }}</p>
+              </ion-text>
+            </div>
+          </ion-col>
+
+          <ion-col size="4">
+            <div class="input-wrapper">
+              <label class="input-label">% Grasa</label>
+              <ion-input type="number" formControlName="fatPercent" class="custom-input"></ion-input>
+              <ion-text color="danger" *ngIf="personalForm.get('fatPercent')?.invalid && personalForm.get('fatPercent')?.touched">
+                <p class="error-text">{{ getErrorMessage('fatPercent') }}</p>
+              </ion-text>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <!-- BOTONES -->
+    <div class="button-group">
+      <ion-button
+        expand="block"
+        type="submit"
+        color="primary"
+        [disabled]="personalForm.invalid"
+      >
+        Registrar Cambios
+      </ion-button>
+      <ion-button
+        expand="block"
+        type="button"
+        color="medium"
+        (click)="modalController.dismiss()"
+      >
+        Cancelar
+      </ion-button>
+    </div>
+  </form>
+</ion-content>

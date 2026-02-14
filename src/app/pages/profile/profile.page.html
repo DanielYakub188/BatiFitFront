@@ -3,7 +3,15 @@
 <ion-content class="ion-padding contenido">
   <!--Posible imagen de perfil futura-->
   <!--NOMBRE / OBJETIVO -->
-  <h3 class="titulo">Daniel Jiménez Alfaro <span class="upperDivider">|</span> <span class="objetivo"></span></h3>
+  <div class="profile-header">
+    <h3 class="profile-nombre">Daniel Jiménez Alfaro</h3>
+    <div class="profile-info">
+      <span class="profile-badge">Varón</span>
+      <span class="profile-badge">22 años</span>
+      <span class="profile-badge">Definición</span>
+    </div>
+  </div>
+
   <div class="datos-fisicos">
     <div class="dato-item">
       <span class="dato-titulo">Altura</span>
@@ -20,6 +28,20 @@
       <span class="dato-valor">17%</span>
     </div>
   </div>
+
+  <div class="objetivo-calorias">
+    <h4 class="subtitulo">Objetivo de Calorías diario</h4>
+    <div class="barra-calorias-container">
+      <div class="barra-label">{{ minCalorias }}</div>
+      <div class="barra-calorias">
+        <div class="barra-fill" [style.width.%]="porcentajeCalorias"></div>
+        <div class="marcador-actual" [style.left.%]="porcentajeCalorias"></div>
+      </div>
+      <div class="barra-label">{{ maxCalorias }}</div>
+    </div>
+    <div class="valor-actual">{{ currentCalorias }} cal</div>
+  </div>
+
   <div class="estadisticas">
     <h4 class="subtitulo">Estadísticas en base a tus atributos</h4>
     <div class="estadistica-item">
@@ -40,8 +62,7 @@
   <div id="botones">
   <ion-button class="boton-editar" color="primary"><span>Marcar Objetivo</span></ion-button>
   <ion-button class="boton-editar" color="primary"><span>Registro de pesos</span></ion-button>
-  <ion-button class="boton-editar" color="primary"><span>Editar Datos</span></ion-button>
+  <ion-button class="boton-editar" color="primary" (click)="openEditModal()"><span>Editar Datos</span></ion-button>
   </div>
 </ion-content>
-
 <app-lowernavbar></app-lowernavbar>
