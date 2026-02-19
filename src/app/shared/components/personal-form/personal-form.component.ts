@@ -1,6 +1,24 @@
+import { ProfileService } from './../../../pages/profile/profile.service';
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import {
+  IonButton,
+  IonButtons,
+  IonContent,
+  IonHeader,
+  IonInput,
+  IonItem,
+  IonModal,
+  IonTitle,
+  IonToolbar,
+  IonPopover,
+} from '@ionic/angular/standalone';
 import { IonicModule, ModalController } from '@ionic/angular';
 import { PersonalAtributes } from '../../models/personalAtributes';
 
@@ -9,11 +27,26 @@ import { PersonalAtributes } from '../../models/personalAtributes';
   templateUrl: './personal-form.component.html',
   styleUrls: ['./personal-form.component.scss'],
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, IonicModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    IonicModule,
+    IonModal,
+    IonButtons,
+    IonHeader,
+  ],
 })
 export class PersonalFormComponent implements OnInit {
   @Input() initialData?: PersonalAtributes;
   @Output() formSubmit = new EventEmitter<PersonalAtributes>();
+
+  name: string = '';
+  age: number = 0;
+  gender: string = '';
+  goal: string = '';
+  heightCm: number = 0;
+  weightKg: number = 0;
+  fatPercent: number = 0;
 
   personalForm!: FormGroup;
 
@@ -29,7 +62,11 @@ export class PersonalFormComponent implements OnInit {
     { label: 'Mantenimiento', value: 'mantenimiento' },
   ];
 
-  constructor(private fb: FormBuilder, public modalController: ModalController) {}
+  constructor(
+    private fb: FormBuilder,
+    public modalController: ModalController,
+    private ProfileService: ProfileService,
+  ) {}
 
   ngOnInit() {
     this.initializeForm();
@@ -37,18 +74,34 @@ export class PersonalFormComponent implements OnInit {
 
   initializeForm() {
     this.personalForm = this.fb.group({
-      name: [this.initialData?.name || '', [Validators.required, Validators.minLength(2)]],
-      age: [this.initialData?.age || '', [Validators.required, Validators.min(1), Validators.max(150)]],
+      name: [
+        this.initialData?.name || '',
+        [Validators.required, Validators.minLength(2)],
+      ],
+      age: [
+        this.initialData?.age || '',
+        [Validators.required, Validators.min(1), Validators.max(150)],
+      ],
       gender: [this.initialData?.gender || '', Validators.required],
       goal: [this.initialData?.goal || '', Validators.required],
-      heightCm: [this.initialData?.heightCm || '', [Validators.required, Validators.min(100), Validators.max(250)]],
-      weightKg: [this.initialData?.weightKg || '', [Validators.required, Validators.min(30), Validators.max(300)]],
-      fatPercent: [this.initialData?.fatPercent || '', [Validators.required, Validators.min(0), Validators.max(100)]],
+      heightCm: [
+        this.initialData?.heightCm || '',
+        [Validators.required, Validators.min(100), Validators.max(250)],
+      ],
+      weightKg: [
+        this.initialData?.weightKg || '',
+        [Validators.required, Validators.min(30), Validators.max(300)],
+      ],
+      fatPercent: [
+        this.initialData?.fatPercent || '',
+        [Validators.required, Validators.min(0), Validators.max(100)],
+      ],
     });
   }
 
   onSubmit() {
     if (this.personalForm.valid) {
+
       const formData: PersonalAtributes = {
         userId: this.initialData?.userId || 0,
         imc: this.initialData?.imc || 0,
@@ -56,7 +109,16 @@ export class PersonalFormComponent implements OnInit {
         fatMass: this.initialData?.fatMass || 0,
         ...this.personalForm.value,
       };
-      this.formSubmit.emit(formData);
+      this.ProfileService.updateProfile(formData).subscribe({
+        next: () => {
+          console.log('Perfil actualizado')
+          console.log(formData);
+        },
+        error: (err) => {
+          console.error('Error al actualizar el perfil', err);
+        }
+      })
+
       this.modalController.dismiss(formData);
     } else {
       console.log('Formulario inválido');
@@ -106,7 +168,9 @@ export class PersonalFormComponent implements OnInit {
     const value = event.target.value;
     const sanitized = value.replace(/[.]/g, '');
     event.target.value = sanitized;
-    this.personalForm.get('weightKg')?.setValue(sanitized, { emitEvent: false });
+    this.personalForm
+      .get('weightKg')
+      ?.setValue(sanitized, { emitEvent: false });
   }
 
   // Sanitizar entrada de grasa (solo números y comas)
@@ -114,6 +178,8 @@ export class PersonalFormComponent implements OnInit {
     const value = event.target.value;
     const sanitized = value.replace(/[.]/g, '');
     event.target.value = sanitized;
-    this.personalForm.get('fatPercent')?.setValue(sanitized, { emitEvent: false });
+    this.personalForm
+      .get('fatPercent')
+      ?.setValue(sanitized, { emitEvent: false });
   }
 }

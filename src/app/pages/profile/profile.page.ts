@@ -1,5 +1,6 @@
+import { ProfileService } from './profile.service';
 import { PersonalAtributes } from './../../shared/models/personalAtributes';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonRow, IonCol, IonBackButton, IonButtons, IonButton, ModalController } from '@ionic/angular/standalone';
 import { LowernavbarComponent } from 'src/app/shared/components/lowernavbar/lowernavbar.component';
@@ -17,13 +18,31 @@ export class ProfilePage {
   maxCalorias = 3000;
   currentCalorias = 1650;
 
+  datosPerfil: PersonalAtributes | null = null;
+
+  constructor(private modalController: ModalController, private profileService: ProfileService) {}
+
+  ngOnInit()
+  {
+    //Cargar datos del usuario
+    this.profileService.getUserInfo().subscribe({
+      next: (data) => {
+        this.datosPerfil = data;
+      },
+      error: (err) => {
+        console.error('Error al cargar los datos del perfil:', err);
+      }
+    })
+
+  }
+
+
   personalAttributes: PersonalAtributes | null = null;
 
   get porcentajeCalorias(): number {
     return ((this.currentCalorias - this.minCalorias) / (this.maxCalorias - this.minCalorias)) * 100;
   }
 
-  constructor(private modalController: ModalController) {}
 
   async openEditModal() {
     const modal = await this.modalController.create({
